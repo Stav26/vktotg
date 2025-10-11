@@ -3,7 +3,6 @@ import logging
 import vk
 import os
 import sys
-import xml.etree.ElementTree as ET
 from logger_config import setup_logger
 from read_write_json import *
 
@@ -60,4 +59,5 @@ if __name__ == "__main__":
        send()
     else:
         logging.error("Файл не найден, невозможно продолжить\n") 
+
         sys.exit(1)
