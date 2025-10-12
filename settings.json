@@ -5,6 +5,7 @@
   },
   "vk": {
     "access_token": "",
-    "last_message_id": ""
+    "last_message_id": "",
+    "chat_id": ""
   }
 }
