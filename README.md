@@ -7,4 +7,4 @@ chat_id - id бота,
 token - токен для подключения к api vk (https://vkhost.github.io выбрать Kate Mobile, следовать инструкциям)
 
 Доп инфа:
-Vk для разработчиков - https://dev.vk.com/ru/method/messages.getConversations
+Инфа по методу получения доступа к сообщениям - https://dev.vk.com/ru/method/messages.getConversations
