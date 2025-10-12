@@ -17,11 +17,9 @@ def get_last_message():
                 last_message_id = items['last_message']['conversation_message_id']
                 #Если чат найден проверяем есть ли id последнего сообщения в settings
                 if last_message_id != read_id:
-                    #Если id последнего сообщения не совпадаеют то записываем его в settings
-                    data["vk"]["last_message_id"] = last_message_id
-                    write_json_file(data)
-                    #Возращаем текст последнего сообщения
-                    return items['last_message']['text']
+                    #Возращаем текст последнего сообщения и его id
+                    text_message = items['last_message']['text']
+                    return text_message, last_message_id
                 else:
                     logging.info(f"Новые сообщения отсутсвуют\n")
                     sys.exit(1)
@@ -39,9 +37,13 @@ def get_last_message():
 #Отправляем содержание сообщения в бот                 
 def send():
     try:
-        logging.info(f"Отправляю содержание сообщения в бот")          
-        telebot.TeleBot(token_tg).send_message(chat_id_tg, get_last_message())
-        logging.info(f"Отправлено\n")
+        logging.info(f"Отправляю содержание сообщения в бот")
+        #Проверяем что сообщение отправлено
+        if telebot.TeleBot(token_tg).send_message(chat_id_tg, text_message):
+            #Записываем id последнего отправленного сообщения в settings
+            data["vk"]["last_message_id"] = last_message_id
+            write_json_file(data)
+            logging.info(f"Отправлено\n")
     except telebot.apihelper.ApiTelegramException as e:
         for attr in ['description']:
             if hasattr(e, attr):
@@ -62,11 +64,12 @@ if __name__ == "__main__":
        token_vk = read_json_file()["vk"]["access_token"]
        read_id = read_json_file()["vk"]["last_message_id"]
        logging.info(f"Запускаю скрипт {os.path.basename(__file__)}")
-       logging.info(f"Извлечение из беседы в vk, id последнего сообщения и запись last_message_id в файл")
-       get_last_message()
+       logging.info(f"Извлечение из чата в vk, id последнего сообщения и его текст, запись last_message_id в файл")
+       text_message, last_message_id = get_last_message()
        send()
     else:
         logging.error("Файл не найден, невозможно продолжить\n") 
         sys.exit(1)
+
 
 
