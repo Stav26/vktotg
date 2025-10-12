@@ -40,7 +40,7 @@ def get_last_message():
 def send():
     try:
         logging.info(f"Отправляю содержание сообщения в бот")          
-        telebot.TeleBot(token_tg).send_message(chat_id_tg, vkapi())
+        telebot.TeleBot(token_tg).send_message(chat_id_tg, get_last_message())
         logging.info(f"Отправлено\n")
     except telebot.apihelper.ApiTelegramException as e:
         for attr in ['description']:
@@ -68,4 +68,5 @@ if __name__ == "__main__":
     else:
         logging.error("Файл не найден, невозможно продолжить\n") 
         sys.exit(1)
+
 
