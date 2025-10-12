@@ -5,3 +5,6 @@ Sending messages from VK to telegrams
 tg_token - токен выдаваемый при создании tg bot,
 chat_id - id бота,
 token - токен для подключения к api vk (https://vkhost.github.io выбрать Kate Mobile, следовать инструкциям)
+
+Доп инфа:
+Vk для разработчиков - https://dev.vk.com/ru/method/messages.getConversations
