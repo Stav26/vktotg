@@ -1,11 +1,12 @@
 {
   "telegram": {
     "bot_token": "",
-    "chat_id": ""
+    "chat_id": 
   },
   "vk": {
     "access_token": "",
-    "last_message_id": "",
-    "chat_id": ""
+    "last_message_id": ,
+    "chat_id": 
   }
 }
+
